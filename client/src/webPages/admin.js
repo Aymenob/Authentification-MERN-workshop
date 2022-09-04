@@ -6,6 +6,9 @@ function Admin() {
     const dispatch=useDispatch()
     const navigate=useNavigate()
     const authorized=useSelector(state=>state.users.authorized)
+    const Name=useSelector(state=>state.users.user.Name)
+    const Email=useSelector(state=>state.users.user.Email)
+    
     useEffect(() => {
         authorized?((navigate("/Admin"))||(dispatch(cleanLogin()))):navigate("/")
        }, [authorized])
@@ -25,7 +28,7 @@ function Admin() {
                         </ul>
                         <div class="d-flex">
                             <div class="mx-4">
-                                <span class="text-black-50">obba</span>
+                                
                                 <button class="btn btn-outline-primary" onClick={()=>{dispatch(logOUT());navigate("/")}}>Logout</button>
                             </div>
                         </div>
@@ -44,7 +47,7 @@ function Admin() {
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col">name</th>
+                                        <th scope="col">Name</th>
                                         <th scope="col">email</th>
                                         <th scope="col">role</th>
                                         <th scope="col">telephone</th>
@@ -56,8 +59,8 @@ function Admin() {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th>aymen</th>
-                                        <td>test@live.fr</td>
+                                        <th>{Name}</th>
+                                        <td>{Email}</td>
                                         <td>ADMIN</td>
                                         <td>56666666</td>
                                         <td>tunisia</td>
