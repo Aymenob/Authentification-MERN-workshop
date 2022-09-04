@@ -76,6 +76,7 @@ export const userSlice = createSlice({
     localStorage.setItem("authorized",true)
     
     },
+    
     [registerUser.rejected]:(state,{payload})=>{
       state.loading=false
       
