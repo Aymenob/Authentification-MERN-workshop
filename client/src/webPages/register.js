@@ -11,7 +11,7 @@ function Register() {
     const errorsEmail=useSelector(state=>state.users.errorsEmail)
     const errorsName=useSelector(state=>state.users.errorsName)
     useEffect(() => {
-        authorized?((Navigate("/Admin"))||(dispatch(cleanLogin()))):Navigate("/Register")
+        authorized?((Navigate("/Admin"))||(dispatch(cleanLogin()))):Navigate("/Register")||(dispatch(cleanLogin()))
        }, [authorized])
     return (
 

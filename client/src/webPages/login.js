@@ -14,10 +14,10 @@ function Login() {
         //console.log(errors[1].msg)
    
     useEffect(() => {
-     authorized?((Navigate("/Admin"))||(disptach(cleanLogin()))):Navigate("/")
+     authorized?((Navigate("/Admin"))||(dispatch(cleanLogin()))):Navigate("/")||(dispatch(cleanLogin()))
     }, [authorized])
     
-    const disptach=useDispatch()
+    const dispatch=useDispatch()
    
     const  [newUser, setnewUser] = useState({})
     return (
@@ -48,7 +48,7 @@ function Login() {
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon1"><i
                                             class="fa-solid fa-at"></i></span>
-                                        <input name="Email" type="text" onChange={(e)=>{setnewUser({...newUser,[e.target.name]:e.target.value});disptach(cleanEmail())}} class="form-control" />
+                                        <input name="Email" type="text" onChange={(e)=>{setnewUser({...newUser,[e.target.name]:e.target.value});dispatch(cleanEmail())}} class="form-control" />
                                     </div>
                                     {errorsEmail?<p class="errors" >{errorsEmail.msg||errorsEmail}</p>:null}
                                 </div>
@@ -57,13 +57,13 @@ function Login() {
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon1"><i
                                             class="fa-solid fa-key"></i></span>
-                                        <input type="password" name="Password" onChange={(e)=>{setnewUser({...newUser,[e.target.name]:e.target.value});disptach(cleanPassword())}}  class="form-control" />      
+                                        <input type="password" name="Password" onChange={(e)=>{setnewUser({...newUser,[e.target.name]:e.target.value});dispatch(cleanPassword())}}  class="form-control" />      
                                     </div>
                                     {errors?<p class="errors">{errors.msg||errors}</p>:null}
                                 </div>
                                 <div class="d-flex justify-content-between">
-                                    <button type="submit" onClick={(e)=>{e.preventDefault();disptach(loginUser(newUser))}} class="btn btn-outline-primary"> Login <i class="fa-solid fa-floppy-disk"></i></button>
-                                    <span class="register">dont have an account ? </span><button class="btn btn-outline-success" onClick={()=>Navigate("/Register")}>Register</button>
+                                    <button type="submit" onClick={(e)=>{e.preventDefault();dispatch(loginUser(newUser))}} class="btn btn-outline-primary"> Login <i class="fa-solid fa-floppy-disk"></i></button>
+                                    <span class="register">dont have an account ? </span><button class="btn btn-outline-success" onClick={()=>{Navigate("/Register");dispatch(cleanLogin())}}>Register</button>
 
                                 </div>
                             </form>
